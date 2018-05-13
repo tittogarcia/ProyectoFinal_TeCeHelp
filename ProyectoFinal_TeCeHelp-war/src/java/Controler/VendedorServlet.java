@@ -8,9 +8,12 @@ package Controler;
 
 import Datos.Daos.VendedorDAO;
 import Datos.Vos.VendedoresDatos;
+import Negocio.sbVendedores;
+import Negocio.sbVendedoresLocal;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +28,10 @@ import javax.swing.JOptionPane;
  */
 @WebServlet(name = "VendedorServlet", urlPatterns = {"/VendedorServlet"})
 public class VendedorServlet extends HttpServlet {
+@EJB
 
+sbVendedoresLocal CL;
+        
     String Nombre, Correo, BVendedor, ciudadNombre;
     int Identificacion, Ciudad;
 
@@ -54,7 +60,7 @@ public class VendedorServlet extends HttpServlet {
 
     private void registrarVendedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException {
 
-        if (VendedorDAO.crearVendedor(new VendedoresDatos(Nombre, Correo, Ciudad, Identificacion)) == 1) {
+        if (CL.crearVendedor(new VendedoresDatos(Nombre, Correo, Ciudad, Identificacion)) == 1) {
             request.getSession().setAttribute("mensajeVendedor", new String("Vendedor " + Nombre + " registrado correctamente"));
             response.sendRedirect("Vendedor/Vendedor.jsp");
         } else {
@@ -64,7 +70,7 @@ public class VendedorServlet extends HttpServlet {
     }
 
     private void ConsultarVendedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        VendedoresDatos ElVendedor = VendedorDAO.Consultar(new VendedoresDatos(Nombre, Correo, ciudadNombre, Identificacion));
+        VendedoresDatos ElVendedor = CL.Consultar(new VendedoresDatos(Nombre, Correo, ciudadNombre, Identificacion));
 
         if (ElVendedor.getNombre() != null) {
             request.getSession().setAttribute("NombreVendedor", new String(ElVendedor.getNombre()));
@@ -87,7 +93,7 @@ public class VendedorServlet extends HttpServlet {
 
     private void modificarVendedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException {
 
-        if (VendedorDAO.modificarVendedor(new VendedoresDatos(Nombre, Correo, Ciudad, Identificacion)) == 1) {
+        if (CL.modificarVendedor(new VendedoresDatos(Nombre, Correo, Ciudad, Identificacion)) == 1) {
             request.getSession().setAttribute("mensajeVendedor", new String("Fue modificado el vendedor " + Nombre));
             response.sendRedirect("Vendedor/Vendedor.jsp");
         } else {
@@ -98,12 +104,12 @@ public class VendedorServlet extends HttpServlet {
 
     private void eliminarVendedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException {
 
-         VendedoresDatos ElVendedor = VendedorDAO.Consultar(new VendedoresDatos(Nombre, Correo, ciudadNombre, Identificacion));
+         VendedoresDatos ElVendedor = CL.Consultar(new VendedoresDatos(Nombre, Correo, ciudadNombre, Identificacion));
         
          String CNombre= ElVendedor.getNombre();
          int CId = ElVendedor.getIdentificacion();
          
-        if (VendedorDAO.eliminarVendedor(new VendedoresDatos(Nombre, Correo, Ciudad, Identificacion)) == 1) {
+        if (CL.eliminarVendedor(new VendedoresDatos(Nombre, Correo, Ciudad, Identificacion)) == 1) {
                         
             request.getSession().setAttribute("mensajeVendedor", new String("Fue eliminado el vendedor " + CNombre + " Con Identificación "+CId));
             response.sendRedirect("Vendedor/Vendedor.jsp");
