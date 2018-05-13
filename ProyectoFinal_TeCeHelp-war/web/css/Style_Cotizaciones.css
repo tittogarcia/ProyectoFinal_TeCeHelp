@@ -1,0 +1,145 @@
+* {
+margin: 0px;
+padding: 0px;
+font-family:Verdana, Geneva, sans-serif;
+font-size:13px;
+}
+
+header, section, footer, aside, nav, article, figure, figcaption, hgroup {
+display: block;
+}
+
+font{
+	color:#FFF;
+	font:Verdana, Geneva, sans-serif;
+	}
+
+
+/*Estilos para los formulario de cotizaciones*/
+
+section {
+	border: 1px solid gray;
+	border-radius: 12px;
+    margin-left: 30px;
+    margin-right: 60px;
+	margin-top:20px;
+	padding:5px;
+    width: 90%;
+	height:inherit;
+    background-color: #FFFDFD;
+    text-align: left;
+	float: right;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
+	
+	
+section div{
+	float:left;
+	margin:10px;
+	width:45%;
+	}
+
+#cabecera_cotiza label,input {
+     display: block;
+     width: 180px; 
+     float: left;
+     margin-bottom: 10px;
+} 
+
+#cabecera_cotiza label {
+     text-align: left;
+     width: 150px;
+     padding-right: 10px;
+}
+
+#cabecera_cotiza input{
+	width: 150px;
+	}
+
+#seleccionar_producto label,input {
+     display: block;
+     width: 100px; 
+     float: left;
+     margin-bottom: 10px;
+} 
+
+#seleccionar_producto label {
+     text-align: left;
+     width: 115px;
+     padding-right: 10px;
+}
+
+	#detalle_cotiza label,input {
+		 display: block;
+		 width: 100px; 
+		 float: left;
+		 margin-bottom: 10px;
+		 margin-right: 10px;
+	} 
+	
+	#detalle_cotiza label {
+		 text-align: left;
+		 width: 70px;
+		 padding-right: 10px;
+	}
+
+br {
+     clear: left;
+}
+
+	
+#detalle_co {
+	margin-left:auto;
+	margin-right:auto;
+    width: 90%;
+	display:block;
+	float: none;
+		}
+	
+table {
+    border-collapse: collapse;
+    width: 100%;
+	padding-bottom: 20px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 6px;
+}
+
+tr:nth-child(even) {
+    background-color: #9DCEFF;
+}
+
+input[type=submit] {
+    background-color: #00F;
+    border: none;
+	border-radius:5px ;
+    color: white;
+    padding: 2px;
+    text-decoration: none;
+    margin: 2px;
+    cursor: pointer;
+	width:115px;
+}
+
+
+	#valores label,input {
+		 display: block;
+		 width: 100px; 
+		 float: left;
+		 margin-bottom: 10px;
+		 margin-right: 10px;
+	} 
+	
+	#detalle_cotiza label {
+		 text-align: left;
+		 width: 70px;
+		 padding-right: 10px;
+	}
+	
+#valores{
+	float:right;
+	}
+/*Fin Estilos para los formulario de cotizaciones*/
