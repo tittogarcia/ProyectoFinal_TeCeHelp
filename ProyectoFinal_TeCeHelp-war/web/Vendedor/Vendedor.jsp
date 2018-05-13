@@ -9,10 +9,42 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Gestión Vendedores</title>
+        <link rel="stylesheet" href="../css/Style_Formularios.css" type="text/css">
     </head>
     <body>
-        <form name='vendedores' action="../VendedorServlet"  method="post">
+
+        <div class="container">  
+            <form id="contact" action="../VendedorServlet" method="post">
+                <h3>Formulario ingreso de vendedores</h3>
+                <fieldset>
+                    <input placeholder="Omar Robinson Morales Paez" type="text" tabindex="1" required autofocus name="nombre">
+                </fieldset>
+                <fieldset>
+                    <input placeholder="Identificación" type="number" tabindex="1" required autofocus name="identificacion">
+                </fieldset>
+                <fieldset>
+                    <input placeholder="omoralesp@ecci.edu.co" type="email" tabindex="2" required name="correo">
+                </fieldset>
+                <fieldset>
+                    <select id="ciudad" name= "ciudad">
+                        <option value="1">Bogotá</option>
+                        <option value="2">Barranquilla</option>
+                        <option value="3">Cartagena</option>
+                        <option value="4">Cali</option>
+                        <option value="5">Medellin</option>
+
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <button name="BVendedor" type="submit" id="Registrar" value="Registrar">Registrar</button>
+                </fieldset>
+                <fieldset>
+                    <button name="BVendedor" type="submit" id="Consultar" value="Consultar">Consultar</button>
+                </fieldset>
+            </form>
+        </div>
+        <%--        <form name='vendedores' action="../VendedorServlet"  method="post">
             <table width="387" border="0">
                 <tr>
                     <td width="83" height="37">Nombre:</td>
@@ -54,9 +86,10 @@
                     <td>&nbsp;</td>
                 </tr>
             </table>
-            <!--este "mensaje" hace referencia al que aparecerá en el momento que un vendedor sea registrado -->
-            <p>${mensajeVendedor}</p>
-        </form>
+
+        </form> --%>
+        <!--este "mensaje" hace referencia al que aparecerá en el momento que un vendedor sea registrado -->
+        <p>${mensajeVendedor}</p>
     </body>
 </html>
 

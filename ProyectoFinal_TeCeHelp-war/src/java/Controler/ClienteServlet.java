@@ -44,7 +44,7 @@ public class ClienteServlet extends HttpServlet {
         Telefono = Integer.parseInt(request.getParameter("telefono"));
         Ciudad = Integer.parseInt(request.getParameter("ciudad"));
 
-        BCliente = request.getParameter("opcion");
+        BCliente = request.getParameter("BCliente");
 
         if (BCliente.equalsIgnoreCase("registrar")) {
             crearCliente(request, response);

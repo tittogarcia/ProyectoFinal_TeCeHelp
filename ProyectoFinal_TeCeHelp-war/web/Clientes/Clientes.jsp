@@ -9,10 +9,53 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Clientes</title>
+        <title>Gestión Clientes</title>
+        <link rel="stylesheet" href="../css/Style_Formularios.css" type="text/css">
     </head>
     <body>
-        <form name='producto' action="../ClienteServlet"  method="post">
+        <div class="container">  
+            <form id="contact" action="../ClienteServlet" method="post">
+                <h3>Formulario ingreso de clientes</h3>
+                <fieldset>
+                    <input placeholder="Identificación" type="number" tabindex="1" required autofocus name="id">
+                </fieldset>
+                <fieldset>
+                    <input placeholder="Nombre empresa" type="text" tabindex="1" required autofocus name="nombreempre">
+                </fieldset>
+                <fieldset>
+                    <input placeholder="Nombre contacto" type="text" tabindex="2" required name="nombrecli">
+                </fieldset>
+                <fieldset>
+                    <input placeholder="Dirección" type="text" tabindex="2" required name="direccion">
+                </fieldset>
+                <fieldset>
+                    <input placeholder="email" type="email" tabindex="2" required name="correo">
+                </fieldset>
+                <fieldset>
+                    <input placeholder="url" type="email" tabindex="2" required name="url">
+                </fieldset>
+                <fieldset>
+                    <input placeholder="Telefono" type="email" tabindex="2" required name="telefono">
+                </fieldset>
+                <fieldset>
+                    <select id="ciudad" name= "ciudad">
+                        <option value="1">Bogotá</option>
+                        <option value="2">Barranquilla</option>
+                        <option value="3">Cartagena</option>
+                        <option value="4">Cali</option>
+                        <option value="5">Medellin</option>
+
+                    </select>
+                    <fieldset>
+                        <button name="BCliente" type="submit" id="Registrar" value="Registrar">Registrar</button>
+                    </fieldset>
+                    <fieldset>
+                        <button name="BCliente" type="submit" id="Consultar" value="Consultar">Consultar</button>
+                    </fieldset>
+
+            </form>
+        </div>
+        <%-- <form name='producto' action="../ClienteServlet"  method="post">
 
             <table width="351" border="0">
 
@@ -43,8 +86,9 @@
                     </td></tr>
 
             </table>
-            <p>${mensajeCliente}</p>
-        </form>
+
+</form> --%>
+        <p>${mensajeCliente}</p>
     </body>
 </html>
 

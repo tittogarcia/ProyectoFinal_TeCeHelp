@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class ConexionDAO {
     private static String url="jdbc:mysql://localhost:3306/worldcad";
     private static String usuario="root";
-    private static String clave="root";
+    private static String clave="///***---";
     private static Connection conn=null;
             
     public static Connection crearConexion() throws ClassNotFoundException{
