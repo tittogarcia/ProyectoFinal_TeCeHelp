@@ -8,10 +8,12 @@ package Controler;
 
 import Datos.Daos.ProductosDAO;
 import Datos.Vos.ProductosDatos;
+import Negocio.sbProductosLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +26,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ProductoServlet", urlPatterns = {"/ProductoServlet"})
 public class ProductoServlet extends HttpServlet {
-
+    
+    @EJB
+    sbProductosLocal producto;        
     String NombreParte, NombreProducto, BProducto;
     int Cantidad;
     float Precio;
@@ -54,7 +58,7 @@ public class ProductoServlet extends HttpServlet {
 
     private void registrarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException {
 
-        if (ProductosDAO.crearProducto(new ProductosDatos(NombreParte, NombreProducto, Cantidad, Precio)) == 1) {
+        if (producto.crearProducto(new ProductosDatos(NombreParte, NombreProducto, Cantidad, Precio)) == 1) {
             request.getSession().setAttribute("mensajeProducto", new String("Producto " + NombreProducto + " registrado correctamente"));
             response.sendRedirect("Producto/Producto.jsp");
         } else {
@@ -64,7 +68,7 @@ public class ProductoServlet extends HttpServlet {
     }
 
     private void ConsultarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductosDatos ElProducto = ProductosDAO.Consultar(new ProductosDatos(NombreParte, NombreProducto, Cantidad, Precio));
+        ProductosDatos ElProducto = producto.Consultar(new ProductosDatos(NombreParte, NombreProducto, Cantidad, Precio));
 
         if (ElProducto.getNombreParte() != null) {
             request.getSession().setAttribute("NombreParte", new String(ElProducto.getNombreParte()));
@@ -83,7 +87,7 @@ public class ProductoServlet extends HttpServlet {
 
     private void modificarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException {
 
-        if (ProductosDAO.modificarProducto(new ProductosDatos(NombreParte, NombreProducto, Cantidad, Precio)) == 1) {
+        if (producto.modificarProducto(new ProductosDatos(NombreParte, NombreProducto, Cantidad, Precio)) == 1) {
             request.getSession().setAttribute("mensajeProducto", new String("Fue modificado el producto " + NombreProducto+ " que tiene nombre de parte "+NombreParte));
             response.sendRedirect("Producto/Producto.jsp");
         } else {
@@ -94,11 +98,11 @@ public class ProductoServlet extends HttpServlet {
 
     private void eliminarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException {
 
-        ProductosDatos ElProducto = ProductosDAO.Consultar(new ProductosDatos(NombreParte, NombreProducto, Cantidad, Precio));
+        ProductosDatos ElProducto = producto.Consultar(new ProductosDatos(NombreParte, NombreProducto, Cantidad, Precio));
 
         String CNombreProducto = ElProducto.getNombreProducto(), CNombreParte = ElProducto.getNombreParte();
 
-        if (ProductosDAO.eliminarProducto(new ProductosDatos(NombreParte, NombreProducto, Cantidad, Precio)) == 1) {
+        if (producto.eliminarProducto(new ProductosDatos(NombreParte, NombreProducto, Cantidad, Precio)) == 1) {
 
             request.getSession().setAttribute("mensajeProducto", new String("Fue Eliminado Nombre de Producto " + CNombreProducto)+" y nombre de parte "+NombreParte);
             response.sendRedirect("Producto/Producto.jsp");

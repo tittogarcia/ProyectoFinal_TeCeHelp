@@ -5,6 +5,11 @@
  */
 package Negocio;
 
+import Datos.Daos.ClienteDAO;
+import Datos.Daos.ProductosDAO;
+import Datos.Vos.ProductosDatos;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 
 /**
@@ -13,6 +18,50 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class sbProductos implements sbProductosLocal {
+
+    @Override
+    public int crearProducto(ProductosDatos productosDatos) {
+        
+        int resultado=0;
+        try {
+            resultado = ProductosDAO.crearProducto(productosDatos);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(sbProductos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return resultado;
+}
+    @Override
+    public ProductosDatos Consultar(ProductosDatos productosDatos) {
+        
+        ProductosDatos productos = ProductosDAO.Consultar(productosDatos);
+        
+        return productos;
+    }
+
+    @Override
+    public int modificarProducto(ProductosDatos productosDatos) {
+              int resultado=0;
+        try {
+            resultado = ProductosDAO.modificarProducto(productosDatos);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(sbProductos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return resultado;  
+    }
+
+    @Override
+    public int eliminarProducto(ProductosDatos productosDatos) {
+                int resultado=0;
+        try {
+            resultado = ProductosDAO.eliminarProducto(productosDatos);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(sbProductos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return resultado;
+    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

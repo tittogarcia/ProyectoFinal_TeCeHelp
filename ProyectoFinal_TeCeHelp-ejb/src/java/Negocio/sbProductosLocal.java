@@ -5,6 +5,7 @@
  */
 package Negocio;
 
+import Datos.Vos.ProductosDatos;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,13 @@ import javax.ejb.Local;
  */
 @Local
 public interface sbProductosLocal {
+
+    public int crearProducto(ProductosDatos productosDatos);
+
+    public ProductosDatos Consultar(ProductosDatos productosDatos);
+
+    public int modificarProducto(ProductosDatos productosDatos);
+
+    public int eliminarProducto(ProductosDatos productosDatos);
     
 }
